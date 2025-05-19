@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Tableau Project </title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<style>
+		.divider {
+			width: 80%;
+			margin: 0em auto;
+			border-top: 2px solid #e0e0e0;
+			opacity: 0.7;
+			border-left: solid 2px #e2e2e2;
+			background-color: #f5f5f5;
+
+		}
+
+		.inner-section {
+			-moz-flex-basis: 50%;
+			-webkit-flex-basis: 50%;
+			-ms-flex-basis: 50%;
+			flex-basis: 50%;
+			-moz-flex-grow: 1;
+			-webkit-flex-grow: 1;
+			-ms-flex-grow: 1;
+			flex-grow: 1;
+			-moz-flex-shrink: 1;
+			-webkit-flex-shrink: 1;
+			-ms-flex-shrink: 1;
+			flex-shrink: 1;
+			padding: 4rem 4rem 2rem 4rem;
+			border-left: solid 2px #e2e2e2;
+			background-color: #f5f5f5;
+			width: calc(100% - 4rem);
+			max-width: 72rem;
+			margin: 0 auto;
+		}
+
+		.custom-section {
+			background-color: #f5f5f5;
+			padding: 4em 2em;
+			text-align: center;
+			border-top: 1px solid #e0e0e0;
+			border-bottom: 1px solid #e0e0e0;
+
+		}
+
+		.custom-section h2 {
+			font-size: 2.5em;
+			margin-bottom: 1em;
+			color: #333333;
+		}
+
+		.custom-section p {
+			font-size: 1.2em;
+			color: #555555;
+			max-width: 800px;
+			margin: 0 auto;
+			line-height: 1.6em;
+		}
+	</style>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.carousel-slide');
+        const next = document.querySelector('.carousel-nav.next');
+        const prev = document.querySelector('.carousel-nav.prev');
+        let currentSlide = 0;
+        const intervalTime = 5000; // 5 seconds
+        let autoPlayInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = (i === index) ? 'block' : 'none';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, intervalTime);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        next.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+
+        prev.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+            resetAutoPlay();
+        });
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        showSlide(currentSlide);
+        startAutoPlay();
+
+        // Lightbox Functionality
+        slides.forEach(slide => {
+            const img = slide.querySelector('img');
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => openLightbox(img.src));
+        });
+
+        function openLightbox(src) {
+            stopAutoPlay(); // Pause autoplay when lightbox is open
+
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.zIndex = '9999';
+            overlay.style.cursor = 'pointer';
+
+            const enlargedImg = document.createElement('img');
+            enlargedImg.src = src;
+            enlargedImg.style.maxWidth = '90%';
+            enlargedImg.style.maxHeight = '90%';
+            enlargedImg.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
+            overlay.appendChild(enlargedImg);
+
+            overlay.addEventListener('click', () => {
+                document.body.removeChild(overlay);
+                startAutoPlay(); // Resume autoplay after closing lightbox
+            });
+
+            document.body.appendChild(overlay);
+        }
+    });
+</script>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">Nikita Hay Portfolio</a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About Me</a></li>
+				<li class="active"><a href="tableau.html">Tableau</a></li>
+				<li><a href="sql.html">SQL</a></li>
+				<li><a href="python.html">Python</a></li>
+				<li><a href="powerbi.html">PowerBI</a></li>
+				<li><a href="data.html">Data</a></li>
+				<li><a href="excel.html">Excel</a></li>
+			</ul>
+			<ul class="icons">
+				<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+				<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+				<li><a href="https://www.linkedin.com/in/nikita-hay-b458b21b4" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/Nikita-Hay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
+		<div class="carousel-container">
+			<div class="carousel-slide">
+				<img src="images/tableau1.png" alt="Slide 1">
+				<div class="figure-label">Fig 1.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau2.png" alt="Slide 2">
+				<div class="figure-label">Fig 2.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau3.png" alt="Slide 3">
+				<div class="figure-label">Fig 3.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau4.png" alt="Slide 4">
+				<div class="figure-label">Fig 4.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau5.png" alt="Slide 5">
+				<div class="figure-label">Fig 5.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau6.png" alt="Slide 6">
+				<div class="figure-label">Fig 6.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/tableau7.png" alt="Slide 7">
+				<div class="figure-label">Fig 7.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/t1.png" alt="Slide 8">
+				<div class="figure-label">Fig 8.</div>
+			</div>
+			<div class="carousel-slide">
+				<img src="images/t2.png" alt="Slide 9">
+				<div class="figure-label">Fig 8.</div>
+			</div>
+
+			<!-- Navigation Buttons -->
+			<button class="carousel-nav prev">&#10094;</button>
+			<button class="carousel-nav next">&#10095;</button>
+		</div>
+		<section id="outcomes" class="inner-section">
+			<header>
+				<h2>Key Outcomes</h2>
+			</header>
+			<ul>
+				<li>Used Python and Pandas to clean, transform, and explore the dataset, ensuring high data quality before visualisation.</li>
+				<li>Designed multiple interactive Tableau dashboards focusing on airline performance and route efficiency.</li>
+				<li>Implemented key KPIs: Total Revenue, Average Ticket Price, Ticket Volume, and Route Mileage.</li>
+				<li>Created custom filters, dynamic buttons, and interactive controls to enhance user navigation.</li>
+				<li>Developed new calculated fields and utilized parameters for advanced, user driven analysis.</li>
+				<li>Applied advanced visualisation techniques and professional design for executive level presentation.</li>
+				<li>Final dashboards empower decision makers to quickly identify trends, monitor KPIs, and make data driven decisions.</li>
+			</ul>
+		</section>
+		<section class="inner-section">
+			<hr class="divider" />
+		</section>
+		<section id="skills" class="inner-section">
+			<header>
+				<h2>Skills & Tools Utilised</h2>
+			</header>
+			<ul>
+				<li>Data Cleaning & Preparation with Python (Pandas)</li>
+				<li>Advanced Data Visualisation in Tableau</li>
+				<li>Business Intelligence Reporting with KPIs and Metrics</li>
+				<li>Interactive Dashboards using Filters, Parameters, and Buttons</li>
+				<li>Data Analysis and Trend Identification</li>
+				<li>Storytelling Through Visual Design</li>
+			</ul>
+		</section>
+		<section id="outcomes" class="inner-section">
+			<header>
+				<h2>Reflection</h2>
+			</header>
+			<p>
+				This project strengthened my ability to transform raw data into meaningful business insights. 
+				I developed a deeper understanding of KPIs and how to visualise them effectively 
+				for executive audiences. Working through challenges such as cleaning complex datasets and 
+				designing intuitive, interactive dashboards has enhanced my confidence in delivering high quality 
+				data solutions. I am now more proficient in leveraging data storytelling to support strategic 
+				decision making.
+			</p>
+		</section>
+		<section class="inner-section">
+			<hr class="divider" />
+		</section>
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
+				<section>
+					<h3>Contact me </h3>
+					<p><a href="#">07774 768749</a></p>
+				</section>
+				<section>
+					<h3>Email</h3>
+					<p><a href="#">Nikita.hay1@icloud.com</a></p>
+				</section>
+				<section>
+					<h3>Social</h3>
+					<ul class="icons alt">
+						<li><a href="https://www.linkedin.com/in/nikita-hay-b458b21b4"
+								class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<!-- <li><a href="#" class="icon brands alt fa--f"><span class="label">Facebook</span></a></li> -->
+						<!-- <li><a href="#" class="icon brands alt fa-indeed"><span class="label">Instagram</span></a></li> -->
+						<li><a href="https://github.com/Nikita-Hay" class="icon brands alt fa-github"><span
+									class="label">GitHub</span></a></li>
+					</ul>
+				</section>
+			</section>
+		</footer>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Nikita Hay Portfolio</li>
+				<!-- <li>Design: <a href="https://html5up.net">HTML5 UP</a></li> -->
+			</ul>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
